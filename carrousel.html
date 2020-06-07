@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Carousel WTSL</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+        html,
+        body {
+            position: relative;
+            height: 100%;
+            box-sizing: border-box;
+            margin: 0;
+        }
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: white !important;
+        }
+        #navBoot {
+            background-color: #fac553 !important;
+        }
+        .navilinks {
+            font-family: 'Lato', sans-serif;
+            font-size: 16px;
+            font-weight: 300;
+            padding-left: 30px;
+            color: rgb(82, 80, 78);
+        }
+        .sidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #fac553 !important;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+            z-index: 3;
+        }
+        .sidenav a {
+            padding: 8px 8px 8px 32px;
+            font-family: 'Lato', sans-serif;
+            text-decoration: none;
+            font-size: 17px;
+            color: #2c2c2c;
+            display: block;
+            transition: 0.3s;
+        }
+        .sidenav a:hover {
+            color: #f1f1f1;
+        }
+        .sidenav .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+        @media screen and (max-height: 450px) {
+            .sidenav {
+                padding-top: 15px;
+            }
+            .sidenav a {
+                font-size: 18px;
+            }
+        }
+        #toogler {
+            border: none;
+        }
+        #btn-share {
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fac553 !important;
+            width: 80px;
+            z-index: 3;
+        }
+        #modal-share .modal-header .close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+        #modal-share .modal-title {
+            padding-right: 20px;
+            padding-left: 20px;
+        }
+        #modal-share li {
+            margin-bottom: 15px;
+            color: #fff;
+        }
+        #modal-share li a {
+            text-transform: uppercase;
+            color: #fff;
+            font-weight: 700;
+            width: 100%;
+            max-width: 300px;
+        }
+        #modal-share li a.btn-facebook {
+            background: #3b5998;
+        }
+
+        #modal-share li a.btn-twitter {
+            background: #00acee;
+        }
+
+        #modal-share li a.btn-linkedin {
+            background: #0e76a8;
+        }
+
+        #modal-share li a.btn-email {
+            background: #ddd;
+            color: #444;
+        }
+
+        .modal-header {
+            flex-direction: column;
+            margin: 0 auto;
+            align-items: inherit !important;
+        }
+
+        .modal-content {
+            width: 70% !important;
+            margin: 0 auto;
+        }
+        #mobile {
+            z-index: 4;
+            position: absolute;
+            top: 0;
+            width: 100vw;
+            display: none;
+        }
+    </style>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://unpkg.com/popper.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <img src="./resources/Artboard 1.png" id="mobile" alt="">
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#">CREATIVE</a>
+        <a href="#">DOCUMENTARY</a>
+        <a href="#">360/VR</a>
+        <a href="#">PHOTO</a>
+        <a href="#">WHO WE ARE</a>
+        <a href="#">HIRE US</a>
+        <a href="#">BLOG</a>
+        <a href="#">WEBINARS</a>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light " id="navBoot">
+        <div class="container">
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="navilinks" href="https://www.whattookyousolong.org/creativity">CREATIVE</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navilinks" href="https://www.whattookyousolong.org/documentaries">DOCUMENTARY</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navilinks" href="https://www.whattookyousolong.org/vr360">360/VR</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navilinks" href="https://www.whattookyousolong.org/photography">PHOTO</a>
+                    </li>
+                </ul>
+            </div>
+            <button class="navbar-toggler" type="button" onclick="openNav()" id="toogler">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                <img src="./resources/Logo.png" style="width:95px;" alt="">
+            </a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="navilinks" href="https://www.whattookyousolong.org/about">WHO WE ARE</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navilinks" href="https://www.whattookyousolong.org/hire-us">HIRE US</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navilinks" href="https://www.whattookyousolong.org/the-after-story">BLOG</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navilinks" href="https://www.whattookyousolong.org/webinars">WEBINARS</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <a href="#" class="btn btn-primary" id="btn-share" data-modal-title="Share!" data-facebook-label="Share on Facebook"
+        data-twitter-label="Share on Twitter" data-twitter-text="Twitter Text" data-linkedin-label="Share on LinkedIn"
+        data-linkedin-title="LinkedIn Title" data-linkedin-summary="LinkedIn Summary" data-email-label="Share via Email"
+        data-email-subject="Email Subject">Share</a>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Swiper -->
+    <div class="swiper-container " style="height:100vh;">
+        <div class="swiper-wrapper">
+
+            <div class="swiper-slide"><iframe id="player" frameborder="0" width="100%" height="100%"
+                    src="https://www.dailymotion.com/embed/video/x7ubykv"></iframe>
+
+            </div>
+
+            <div class="swiper-slide"><iframe id="player2" frameborder="0" width="100%" height="100%"
+                    src="https://www.dailymotion.com/embed/video/x7ubyle"></iframe>
+
+            </div>
+
+            <div class="swiper-slide"><iframe id="player3" frameborder="0" width="100%" height="100%"
+                    src="https://www.dailymotion.com/embed/video/x7ubyqo"></iframe>
+
+            </div>
+            <div class="swiper-slide"><iframe id="player4" frameborder="0" width="100%" height="100%"
+                    src="https://www.dailymotion.com/embed/video/x7ubys8"></iframe>
+
+            </div>
+
+            <div class="swiper-slide"><iframe id="player5" frameborder="0" width="100%" height="100%"
+                    src="https://www.dailymotion.com/embed/video/x7ubytz"></iframe>
+
+            </div>
+
+            <div class="swiper-slide"><iframe id="player6" frameborder="0" width="100%" height="100%"
+                    src="https://www.dailymotion.com/embed/video/x7ubz0g"></iframe>
+
+            </div>
+            <div class="swiper-slide"><iframe id="player7" frameborder="0" width="100%" height="100%"
+                    src="https://www.dailymotion.com/embed/video/x7ubz0s"></iframe>
+
+            </div>
+
+            <div class="swiper-slide"><iframe id="player8" frameborder="0" width="100%" height="100%"
+                    src="https://www.dailymotion.com/embed/video/x7ubz1z"></iframe>
+
+            </div>
+
+            <div class="swiper-slide"><iframe id="player9" frameborder="0" width="100%" height="100%"
+                    src="https://www.dailymotion.com/embed/video/x7ubz28"></iframe>
+
+            </div>
+            <div class="swiper-slide"><iframe id="player10" frameborder="0" width="100%" height="100%"
+                    src="https://www.dailymotion.com/embed/video/x7ubz2q"></iframe>
+
+            </div>
+
+            <div class="swiper-slide"><iframe id="player11" frameborder="0" width="100%" height="100%"
+                    src="https://www.dailymotion.com/embed/video/x7ubza3"></iframe>
+
+            </div>
+
+            <div class="swiper-slide"><iframe id="player12" frameborder="0" width="100%" height="100%"
+                    src="https://www.dailymotion.com/embed/video/x7sj6ar"></iframe>
+
+            </div>
+            <div class="swiper-slide"><iframe id="player13" frameborder="0" width="100%" height="100%"
+                    src="https://www.dailymotion.com/embed/video/x7tlpu0"></iframe>
+
+            </div>
+
+            <div class="swiper-slide"><iframe id="player14" frameborder="0" width="100%" height="100%"
+                    src="https://www.dailymotion.com/embed/video/x7sj6aq"></iframe>
+
+            </div>
+
+            <div class="swiper-slide"><iframe id="player15" frameborder="0" width="100%" height="100%"
+                    src="https://www.dailymotion.com/embed/video/x7sj6ar"></iframe>
+
+            </div>
+            <div class="swiper-slide"><iframe id="player16" frameborder="0" width="100%" height="100%"
+                    src="https://www.dailymotion.com/embed/video/x7tlpu0"></iframe>
+
+            </div>
+
+            <div class="swiper-slide"><iframe id="player17" frameborder="0" width="100%" height="100%"
+                    src="https://www.dailymotion.com/embed/video/x7sj6aq"></iframe>
+
+            </div>
+
+            <div class="swiper-slide"><iframe id="player18" frameborder="0" width="100%" height="100%"
+                    src="https://www.dailymotion.com/embed/video/x7sj6ar"></iframe>
+
+            </div>
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next" id="next" onclick="nextF()"></div>
+        <div class="swiper-button-prev" onclick="prevF()"></div>
+    </div>
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "90%";
+        };
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        };
+    </script>
+    <script>
+        let next = document.getElementById('next');
+
+        var swiper = new Swiper('.swiper-container', {
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+    </script>
+    <script src="https://api.dmcdn.net/all.js"></script>
+    <script>
+        var player = DM.player(document.getElementById("player"), {
+            video: "x7ubykv",
+            width: "100%",
+            height: "100%",
+            params: {
+                controls: false
+            }
+        });
+        var player2 = DM.player(document.getElementById("player2"), {
+            video: "x7ubyle",
+            width: "100%",
+            height: "100%",
+            params: {
+                controls: false
+            }
+        });
+        var player3 = DM.player(document.getElementById("player3"), {
+            video: "x7ubyqo",
+            width: "100%",
+            height: "100%",
+            params: {
+                controls: false
+            }
+        });
+        var player4 = DM.player(document.getElementById("player4"), {
+            video: "x7ubys8",
+            width: "100%",
+            height: "100%",
+            params: {
+                controls: false
+            }
+        });
+        var player5 = DM.player(document.getElementById("player5"), {
+            video: "x7ubytz",
+            width: "100%",
+            height: "100%",
+            params: {
+                controls: false
+            }
+        });
+        var player6 = DM.player(document.getElementById("player6"), {
+            video: "x7ubz0g",
+            width: "100%",
+            height: "100%",
+            params: {
+                controls: false
+            }
+        });
+        var player7 = DM.player(document.getElementById("player7"), {
+            video: "x7ubz0s",
+            width: "100%",
+            height: "100%",
+            params: {
+                controls: false
+            }
+        });
+        var player8 = DM.player(document.getElementById("player8"), {
+            video: "x7ubz1z",
+            width: "100%",
+            height: "100%",
+            params: {
+                controls: false
+            }
+        });
+        var player9 = DM.player(document.getElementById("player9"), {
+            video: "x7ubz28",
+            width: "100%",
+            height: "100%",
+            params: {
+                controls: false
+            }
+        });
+        var player10 = DM.player(document.getElementById("player10"), {
+            video: "x7ubz2q",
+            width: "100%",
+            height: "100%",
+            params: {
+                controls: false
+            }
+        });
+        var player11 = DM.player(document.getElementById("player11"), {
+            video: "x7ubza3",
+            width: "100%",
+            height: "100%",
+            params: {
+                controls: false
+            }
+        });
+        var player12 = DM.player(document.getElementById("player12"), {
+            video: "x7sj6ar",
+            width: "100%",
+            height: "100%",
+            params: {
+                controls: false
+            }
+        });
+        var player13 = DM.player(document.getElementById("player13"), {
+            video: "x7tlpu0",
+            width: "100%",
+            height: "100%",
+            params: {
+                controls: false
+            }
+        });
+        var player14 = DM.player(document.getElementById("player14"), {
+            video: "x7sj6aq",
+            width: "100%",
+            height: "100%",
+            params: {
+                controls: false
+            }
+        });
+        var player15 = DM.player(document.getElementById("player15"), {
+            video: "x7sj6ar",
+            width: "100%",
+            height: "100%",
+            params: {
+                controls: false
+            }
+        });
+        var player16 = DM.player(document.getElementById("player16"), {
+            video: "x7tlpu0",
+            width: "100%",
+            height: "100%",
+            params: {
+                controls: false
+            }
+        });
+        var player17 = DM.player(document.getElementById("player17"), {
+            video: "x7sj6aq",
+            width: "100%",
+            height: "100%",
+            params: {
+                controls: false
+            }
+        });
+        var player18 = DM.player(document.getElementById("player18"), {
+            video: "x7sj6ar",
+            width: "100%",
+            height: "100%",
+            params: {
+                controls: false
+            }
+        });
+        let players = [player, player2, player3, player4, player5, player6, player7, player8, player9, player10,
+            player11, player12, player13, player14, player15, player16, player17, player18
+        ];
+        players.forEach(x => {
+            x.addEventListener('video_end', (event) => {
+                next.click();
+            })
+        });
+        let state = 0;
+        const nextF = () => {
+            state++;
+            myScript2();
+        };
+        const prevF = () => {
+            state--;
+            myScript2();
+        };
+        const resetVideos = () => {
+            players.forEach(x => {
+                x.pause();
+            });
+        };
+        const myScript2 = () => {
+            resetVideos();
+            setTimeout(() => {
+                state === 0 ? player.play() : 'null';
+                state === 1 ? player2.play() : 'null';
+                state === 2 ? player3.play() : 'null';
+                state === 3 ? player4.play() : 'null';
+                state === 4 ? player5.play() : 'null';
+                state === 5 ? player6.play() : 'null';
+                state === 6 ? player7.play() : 'null';
+                state === 7 ? player8.play() : 'null';
+                state === 8 ? player9.play() : 'null';
+                state === 9 ? player10.play() : 'null';
+                state === 10 ? player11.play() : 'null';
+                state === 11 ? player12.play() : 'null';
+                state === 12 ? player13.play() : 'null';
+                state === 13 ? player14.play() : 'null';
+                state === 14 ? player15.play() : 'null';
+                state === 15 ? player16.play() : 'null';
+                state === 16 ? player17.play() : 'null';
+                state === 17 ? player18.play() : 'null';
+
+            }, 2000);
+        };
+    </script>
+    <script>
+        $("#btn-share").click(function () {
+            var shareHtml = "",
+                shareUrl = window.location.href,
+                el = $(this),
+                shareModalTitle = el.data("modal-title"),
+                shareModalDescription = el.data("modal-description"),
+                shareFacebookLabel = el.data("facebook-label"),
+                shareTwitterLabel = el.data("twitter-label"),
+                shareTwitterText = el.data("twitter-text"),
+                shareLinkedInLabel = el.data("linkedin-label"),
+                shareLinkedInTitle = encodeURIComponent(el.data("linkedin-title")),
+                shareLinkedInSummary = encodeURIComponent(el.data("linkedin-summary")),
+                shareLinkedInSource = window.location.protocol + "//" + window.location.hostname,
+                shareEmailLabel = el.data("email-label"),
+                shareEmailSubject = el.data("email-subject");
+            document.execCommand('copy', false, 'asd');
+            shareHtml +=
+                '<div class="modal fade in text-center" id="modal-share" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">' +
+                '<div class="modal-dialog">' +
+                '<div class="modal-content">' +
+                '<div class="modal-header">' +
+                '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>' +
+                '<h3 class="modal-title" id="myModalLabel">' + shareModalTitle + '</h3>';
+
+            if (shareModalDescription != undefined) {
+                shareHtml += '<p>' + shareModalDescription + '</p>';
+            }
+            '</div>' +
+            '<div class="modal-body">' +
+            '<ul class="list-unstyled">';
+
+            if (shareFacebookLabel != undefined) {
+                shareHtml += '<li><a href="https://www.facebook.com/sharer/sharer.php?u=' + shareUrl +
+                    '" title="' + shareFacebookLabel +
+                    '" target="_blank" class="btn btn-facebook"><i class="icon-facebook"></i> ' +
+                    shareFacebookLabel + '</a></li>';
+            }
+            if (shareTwitterLabel != undefined) {
+                shareHtml += '<li><a href="https://twitter.com/intent/tweet?text=' + shareTwitterText +
+                    '&url=' + shareUrl + '" title="' + shareTwitterLabel +
+                    '" target="_blank" class="btn btn-twitter"><i class="icon-twitter"></i> ' +
+                    shareTwitterLabel + '</a></li>';
+            }
+            if (shareLinkedInLabel != undefined) {
+                shareHtml += '<li><a href="https://www.linkedin.com/shareArticle?mini=true&url=' + shareUrl +
+                    '&title=' + shareLinkedInTitle + '&summary=' + shareLinkedInSummary + '&source=' +
+                    shareLinkedInSource + '" title="' + shareLinkedInLabel +
+                    '" target="_blank" class="btn btn-linkedin"><i class="icon-linkedin"></i> ' +
+                    shareLinkedInLabel + '</a></li>';
+            }
+            if (shareEmailLabel != undefined) {
+                shareHtml += ` <div class="wrapper">
+        <input id="select-this" value="www.wtysl.com/experience" />
+        <button class="button" onClick="(function()  {document.execCommand('copy', false, document.getElementById('select-this').select()); return false; })();return false;" id="clickMe">Click to copy</button>
+    </div> `
+            }
+            '</ul>' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '</div>';
+
+            $("body").append(shareHtml);
+            $('#modal-share').modal();
+        });
+        let mobileImg = document.getElementById('mobile');
+        if ($(window).width() < 660) {
+           setTimeout(() => {
+            mobileImg.style.display = "block";
+            hideMobileImg()
+        }, 100);
+        };
+        const hideMobileImg =()=>{
+            setTimeout(() => {
+                mobileImg.style.display = "none";
+            }, 5000);
+        };
+    </script>
+</body>
+
+</html>
