@@ -598,17 +598,19 @@
             $('#modal-share').modal();
         });
         let mobileImg = document.getElementById('mobile');
-        if ($(window).width() < 660) {
-           setTimeout(() => {
-            mobileImg.style.display = "block";
-            hideMobileImg()
-        }, 100);
-        };
-        const hideMobileImg =()=>{
-            setTimeout(() => {
-                mobileImg.style.display = "none";
-            }, 5000);
-        };
+      
+      const hideMobileImg =()=>{
+          setTimeout(() => {
+              mobileImg.style.display = "none";
+          }, 5000);
+      };
+    
+      if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+ setTimeout(() => {
+          mobileImg.style.display = "block";
+          hideMobileImg()
+      }, 100);
+}
     </script>
 </body>
 
