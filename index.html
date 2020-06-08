@@ -1,35 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <title>Carousel WTSL</title>
-    <link rel="icon" 
-      type="image/png" 
-      href="./resources/favicon.ico">
+    <link rel="icon" type="image/png" href="./resources/favicon.ico">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+       
 
         html,
         body {
             position: relative;
             height: 100%;
+            width: 100%;
             box-sizing: border-box;
             margin: 0;
         }
+
+        /* *{
+            font-family: 'Lato', sans-serif;
+        } */
         .swiper-button-next,
         .swiper-button-prev {
             color: white !important;
         }
+
+
         #navBoot {
+            z-index: 3;
+            width: 100%;
+            position: absolute;
             background-color: #fac553 !important;
+            position: absolute;
+            top: -125px;
         }
+
         .navilinks {
             font-family: 'Lato', sans-serif;
             font-size: 16px;
             font-weight: 300;
             padding-left: 30px;
-            color: rgb(82, 80, 78);
+            color: #575757
         }
+
+        .navilinks:hover {
+            color: #030303 !important;
+            text-decoration: none !important;
+        }
+
+        .nav-item{
+            margin-bottom: 15px !important;
+        }    
         .sidenav {
             height: 100%;
             width: 0;
@@ -41,8 +63,9 @@
             overflow-x: hidden;
             transition: 0.5s;
             padding-top: 60px;
-            z-index: 3;
+            z-index: 5;
         }
+
         .sidenav a {
             padding: 8px 8px 8px 32px;
             font-family: 'Lato', sans-serif;
@@ -51,10 +74,13 @@
             color: #2c2c2c;
             display: block;
             transition: 0.3s;
+            
         }
+
         .sidenav a:hover {
             color: #f1f1f1;
         }
+
         .sidenav .closebtn {
             position: absolute;
             top: 0;
@@ -62,73 +88,107 @@
             font-size: 36px;
             margin-left: 50px;
         }
+
         @media screen and (max-height: 450px) {
             .sidenav {
                 padding-top: 15px;
             }
+
             .sidenav a {
                 font-size: 18px;
             }
         }
+
         #toogler {
             border: none;
         }
+
         #btn-share {
             position: absolute;
-            bottom: 10%;
+            bottom: 5%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: #fac553 !important;
-            width: 80px;
+            background-color: transparent !important;
             z-index: 3;
+            font-family: 'Lato', sans-serif !important;
+            border-radius: 0% !important;
+            text-align: center;
+            margin-right: 70px;
+            font-size: 14px;
+            color: #fac553 !important;
+            border: 2px #fac553 solid !important;
+            padding: 15px 70px 15px 70px;
+            display: none;
         }
+
         #modal-share .modal-header .close {
             position: absolute;
             top: 15px;
             right: 15px;
         }
+
         #modal-share .modal-title {
             padding-right: 20px;
             padding-left: 20px;
         }
+
         #modal-share li {
-            margin-bottom: 15px;
-            color: #fff;
+          
+            color: transparent;
         }
+
         #modal-share li a {
             text-transform: uppercase;
             color: #fff;
             font-weight: 700;
             width: 100%;
             max-width: 300px;
+            list-style: none;
         }
+
         #modal-share li a.btn-facebook {
             background: #3b5998;
+            list-style: none;
+
         }
 
         #modal-share li a.btn-twitter {
             background: #00acee;
+            list-style: none;
         }
 
         #modal-share li a.btn-linkedin {
             background: #0e76a8;
+            list-style: none;
         }
 
         #modal-share li a.btn-email {
             background: #ddd;
-            color: #444;
+            color: transparent;
+            list-style: none;
+        }
+
+        ul {
+            list-style-type: none;
+
         }
 
         .modal-header {
             flex-direction: column;
             margin: 0 auto;
             align-items: inherit !important;
+            height: 380px !important;
+            border-bottom: transparent !important;
         }
 
         .modal-content {
-            width: 70% !important;
+            width: 110% !important;
             margin: 0 auto;
+            background-color: transparent !important;
+            height: 320px;
+            border: none !important;
         }
+
         #mobile {
             z-index: 4;
             position: absolute;
@@ -136,102 +196,148 @@
             width: 100vw;
             display: none;
         }
+
+        .modal-title {
+            color: white;
+        }
+
+        #select-this {
+            width: 300px !important;
+            padding: 4px;
+        }
+
+        .wrapper {
+            margin-left: auto;
+        }
+
+        #clickMe {
+            background-color: #fac553;
+            border: none;
+            padding: 5px;
+        }
+
+        .modal-dialog {
+            margin-top: 170px !important;
+        }
+
+        .close {
+            color: white !important;
+        }
+
+        #next,
+        #prev {
+            margin: auto 3%;
+        }
+
+        #share-fixed {
+            position: absolute;
+            bottom: 3%;
+            right: 3%;
+            z-index: 6;
+            fill: #fac553 !important;
+            border: none;
+            background-color: transparent;
+            width: 30px;
+
+        }
+        .navbar-nav {
+            flex-wrap: wrap !important;
+            width: 400px !important;
+        }
     </style>
     <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     <script src="https://unpkg.com/popper.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-    <img src="./resources/Artboard 1.png" id="mobile" alt="">
-    <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="#">CREATIVE</a>
-        <a href="#">DOCUMENTARY</a>
-        <a href="#">360/VR</a>
-        <a href="#">PHOTO</a>
-        <a href="#">WHO WE ARE</a>
-        <a href="#">HIRE US</a>
-        <a href="#">BLOG</a>
-        <a href="#">WEBINARS</a>
-    </div>
-    <nav class="navbar navbar-expand-lg navbar-light " id="navBoot">
-        <div class="container">
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="navilinks" href="https://www.whattookyousolong.org/creativity">CREATIVE</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="navilinks" href="https://www.whattookyousolong.org/documentaries">DOCUMENTARY</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="navilinks" href="https://www.whattookyousolong.org/vr360">360/VR</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="navilinks" href="https://www.whattookyousolong.org/photography">PHOTO</a>
-                    </li>
-                </ul>
+    <header>
+        <img src="./resources/Artboard 1.png" id="mobile" alt="mobile-first">
+        <div class="nav">
+            <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a href="#">CREATIVE</a>
+                <a href="#">DOCUMENTARY</a>
+                <a href="#">360/VR</a>
+                <a href="#">PHOTO</a>
+                <a href="#">WHO WE ARE</a>
+                <a href="#">HIRE US</a>
+                <a href="#">BLOG</a>
+                <a href="#">WEBINARS</a>
             </div>
-            <button class="navbar-toggler" type="button" onclick="openNav()" id="toogler">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <a class="navbar-brand" href="#">
-                <img src="./resources/Logo.png" style="width:95px;" alt="">
-            </a>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="navilinks" href="https://www.whattookyousolong.org/about">WHO WE ARE</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="navilinks" href="https://www.whattookyousolong.org/hire-us">HIRE US</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="navilinks" href="https://www.whattookyousolong.org/the-after-story">BLOG</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="navilinks" href="https://www.whattookyousolong.org/webinars">WEBINARS</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <a href="#" class="btn btn-primary" id="btn-share" data-modal-title="Share!" data-facebook-label="Share on Facebook"
-        data-twitter-label="Share on Twitter" data-twitter-text="Twitter Text" data-linkedin-label="Share on LinkedIn"
-        data-linkedin-title="LinkedIn Title" data-linkedin-summary="LinkedIn Summary" data-email-label="Share via Email"
-        data-email-subject="Email Subject">Share</a>
-
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+            <nav class="navbar navbar-expand-lg navbar-light small" id="navBoot">
+                <div class="container">
+                    <div class="collapse navbar-collapse" id="navbarResponsive">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a class="navilinks" href="https://www.whattookyousolong.org/creativity">CREATIVE</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="navilinks"
+                                    href="https://www.whattookyousolong.org/documentaries">DOCUMENTARY</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="navilinks" href="https://www.whattookyousolong.org/vr360">360/VR</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="navilinks" href="https://www.whattookyousolong.org/photography">PHOTO</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="navilinks" href="https://www.whattookyousolong.org/photography">INTERACTIVE</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <button class="navbar-toggler" type="button" onclick="openNav()" id="toogler">
+                        <span class="navbar-toggler-icon"></span>
                     </button>
+                    <a class="navbar-brand" href="#">
+                        <img src="./resources/Logo.png" style="width:95px;" alt="">
+                    </a>
+                    <div class="collapse navbar-collapse">
+                        <ul class="navbar-nav ml-auto" style="
+                        justify-content: flex-end;
+                    ">
+                            <li class="nav-item">
+                                <a class="navilinks" href="https://www.whattookyousolong.org/about">WHO WE ARE</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="navilinks" href="https://www.whattookyousolong.org/hire-us">HIRE US</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="navilinks" href="https://www.whattookyousolong.org/the-after-story">BLOG</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="navilinks" href="https://www.whattookyousolong.org/webinars">WEBINARS</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
+            </nav>
         </div>
-    </div>
+    </header>
+    <a href="#" class="btn btn-primary" id="btn-share" data-modal-title="Share the Jafra experience"
+        data-facebook-label="Share on Facebook" data-twitter-label="Share on Twitter" data-twitter-text="Twitter Text"
+        data-linkedin-label="Share on LinkedIn" data-linkedin-title="LinkedIn Title"
+        data-linkedin-summary="LinkedIn Summary" data-email-label="Share via Email"
+        data-email-subject="Email Subject">SHARE</a>
+
+    <button id="share-fixed">
+        <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24">
+            <path
+                d="M5 7c2.761 0 5 2.239 5 5s-2.239 5-5 5-5-2.239-5-5 2.239-5 5-5zm11.122 12.065c-.073.301-.122.611-.122.935 0 2.209 1.791 4 4 4s4-1.791 4-4-1.791-4-4-4c-1.165 0-2.204.506-2.935 1.301l-5.488-2.927c-.23.636-.549 1.229-.943 1.764l5.488 2.927zm7.878-15.065c0-2.209-1.791-4-4-4s-4 1.791-4 4c0 .324.049.634.122.935l-5.488 2.927c.395.535.713 1.127.943 1.764l5.488-2.927c.731.795 1.77 1.301 2.935 1.301 2.209 0 4-1.791 4-4z" />
+        </svg></button>
     <!-- Swiper -->
     <div class="swiper-container " style="height:100vh;">
         <div class="swiper-wrapper">
 
-            <div class="swiper-slide"><iframe id="player" frameborder="0" width="100%" height="100%"
+            <div class="swiper-slide">
+
+                <iframe id="player" frameborder="0" width="100%" height="100%"
                     src="https://www.dailymotion.com/embed/video/x7ubykv"></iframe>
+                <div class="swiper-lazy-preloader" id="preloader"></div>
 
             </div>
 
@@ -312,13 +418,18 @@
 
             <div class="swiper-slide"><iframe id="player18" frameborder="0" width="100%" height="100%"
                     src="https://www.dailymotion.com/embed/video/x7uchs8"></iframe>
+                <a href="#" class="btn btn-primary" id="btn-share" data-modal-title="Share the Jafra experience"
+                    data-facebook-label="Share on Facebook" data-twitter-label="Share on Twitter"
+                    data-twitter-text="Twitter Text" data-linkedin-label="Share on LinkedIn"
+                    data-linkedin-title="LinkedIn Title" data-linkedin-summary="LinkedIn Summary"
+                    data-email-label="Share via Email" data-email-subject="Email Subject">Share</a>
 
             </div>
         </div>
         <!-- Add Pagination -->
         <div class="swiper-pagination"></div>
         <div class="swiper-button-next" id="next" onclick="nextF()"></div>
-        <div class="swiper-button-prev" onclick="prevF()"></div>
+        <div class="swiper-button-prev" id="prev" onclick="prevF()"></div>
     </div>
     <!-- Swiper JS -->
     <script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
@@ -339,6 +450,7 @@
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
             },
+            lazy: true
         });
     </script>
     <script src="https://api.dmcdn.net/all.js"></script>
@@ -488,6 +600,19 @@
                 controls: false
             }
         });
+
+        $('header').mouseenter(function () {
+            $('nav').animate({
+                top: '0'
+            });
+        })
+        $('.swiper-slide').mouseenter(function () {
+            // if mouse does not leave window
+            $('nav').animate({
+                top: '-125px'
+            });
+        });
+
         let players = [player, player2, player3, player4, player5, player6, player7, player8, player9, player10,
             player11, player12, player13, player14, player15, player16, player17, player18
         ];
@@ -496,6 +621,12 @@
                 next.click();
             })
         });
+
+        player.addEventListener('play', e => {
+            let preload = document.getElementById('preloader');
+            preload.style.display = 'none';
+        });
+
         let state = 0;
         const nextF = () => {
             state++;
@@ -530,12 +661,25 @@
                 state === 14 ? player15.play() : 'null';
                 state === 15 ? player16.play() : 'null';
                 state === 16 ? player17.play() : 'null';
-                state === 17 ? player18.play() : 'null';
+                if (state === 17) {
+                    player18.play();
+                    setTimeout(() => {
+                        const btn = document.getElementById('btn-share')
+                        btn.style.display = 'block'
+                    }, 33000);
+                }
 
             }, 20);
         };
     </script>
     <script>
+        let btnShare = document.getElementById('btn-share');
+        let shareFixed = document.getElementById('share-fixed');
+
+        shareFixed.addEventListener('click',e=>{
+            btnShare.click()
+        })
+
         $("#btn-share").click(function () {
             var shareHtml = "",
                 shareUrl = window.location.href,
@@ -589,7 +733,7 @@
             if (shareEmailLabel != undefined) {
                 shareHtml += ` <div class="wrapper">
         <input id="select-this" value="www.wtysl.com/experience" />
-        <button class="button" onClick="(function()  {document.execCommand('copy', false, document.getElementById('select-this').select()); return false; })();return false;" id="clickMe">Click to copy</button>
+        <button class="button" onClick="(function()  {document.execCommand('copy', false, document.getElementById('select-this').select()); return false; })();return false;" id="clickMe">📎</button>
     </div> `
             }
             '</ul>' +
@@ -602,19 +746,19 @@
             $('#modal-share').modal();
         });
         let mobileImg = document.getElementById('mobile');
-      
-      const hideMobileImg =()=>{
-          setTimeout(() => {
-              mobileImg.style.display = "none";
-          }, 5000);
-      };
-    
-      if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
- setTimeout(() => {
-          mobileImg.style.display = "block";
-          hideMobileImg()
-      }, 100);
-}
+
+        const hideMobileImg = () => {
+            setTimeout(() => {
+                mobileImg.style.display = "none";
+            }, 5000);
+        };
+
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            setTimeout(() => {
+                mobileImg.style.display = "block";
+                hideMobileImg()
+            }, 100);
+        }
     </script>
 </body>
 
