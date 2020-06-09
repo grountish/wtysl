@@ -190,7 +190,7 @@
 
 <body>
     </header>
-    <a href="https://www.whattookyousolong.org/interactive"><img class="logo-nav" src="./resources/Logo.png" alt=""></a>
+    <a href="https://www.whattookyousolong.org"><img class="logo-nav" src="./resources/Logo.png" alt=""></a>
     <a href="#" class="btn btn-primary" id="btn-share" data-modal-title="Share the Jafra experience"
         data-facebook-label="Share on Facebook" data-twitter-label="Share on Twitter" data-twitter-text="Twitter Text"
         data-linkedin-label="Share on LinkedIn" data-linkedin-title="LinkedIn Title"
@@ -504,7 +504,7 @@
 
         let swiperNav = document.querySelector('.swiper-pagination')
         swiperNav.addEventListener('click', e=>{
-            players.forEach(x=>x.pause())
+            players.forEach(x=>{x.pause()})
             state = swiper.realIndex
             myScript2()
         })
@@ -532,7 +532,10 @@
         const myScript2 = () => {
           
             setTimeout(() => {
-                state === 0 ? player.play() : 'null';
+                if(state === 0 ){
+                    player.seek(0);
+                    player.play()
+                }
                 state === 1 ? player2.play() : 'null';
                 state === 2 ? player3.play() : 'null';
                 state === 3 ? player4.play() : 'null';
