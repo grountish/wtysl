@@ -189,7 +189,7 @@
 </head>
 
 <body>
-    </header> 
+    </header>
     <a href="https://www.whattookyousolong.org/interactive"><img class="logo-nav" src="./resources/Logo.png" alt=""></a>
     <a href="#" class="btn btn-primary" id="btn-share" data-modal-title="Share the Jafra experience"
         data-facebook-label="Share on Facebook" data-twitter-label="Share on Twitter" data-twitter-text="Twitter Text"
@@ -315,9 +315,11 @@
         let next = document.getElementById('next');
 
         var swiper = new Swiper('.swiper-container', {
+          
             pagination: {
                 el: '.swiper-pagination',
                 type: 'bullets',
+                clickable: true
             },
             navigation: {
                 nextEl: '.swiper-button-next',
@@ -491,26 +493,35 @@
         ];
         players.forEach(x => {
             x.addEventListener('video_end', (event) => {
-               
+
                 setTimeout(() => {
                     x.play()
                 }, 2000);
             })
         });
 
+        let state;
+
+        let swiperNav = document.querySelector('.swiper-pagination')
+        swiperNav.addEventListener('click', e=>{
+            players.forEach(x=>x.pause())
+            state = swiper.realIndex
+            myScript2()
+        })
+
         player.addEventListener('play', e => {
             let preload = document.getElementById('preloader');
             preload.style.display = 'none';
         });
 
-        let state = 0;
+        
         const nextF = () => {
-            state++;
             myScript2();
+            state++;
         };
         const prevF = () => {
-            state--;
             myScript2();
+            state--;
         };
         const resetVideos = () => {
             players.forEach(x => {
@@ -519,7 +530,7 @@
             player18.pause();
         };
         const myScript2 = () => {
-            resetVideos();
+          
             setTimeout(() => {
                 state === 0 ? player.play() : 'null';
                 state === 1 ? player2.play() : 'null';
