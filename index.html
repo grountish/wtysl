@@ -167,7 +167,7 @@
         }
 
         #logo-share {
-            max-width: 60px !important;
+            max-width: 50px !important;
 
         }
 
@@ -178,6 +178,18 @@
 
         :root {
             --swiper-theme-color: #fac553 !important;
+        }
+
+
+        .swiper-pagination-bullet {
+            width: 4.5% !important;
+            border-radius: 0% !important;
+
+        }
+
+        .swiper-pagination {
+            top: 5px !important;
+            height: 25px !important;
         }
     </style>
     <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
@@ -199,7 +211,7 @@
 
     <a id="share-fixed"><img id="logo-share" src="./resources/sharebtn.png" alt=""></a>
     <!-- Swiper -->
-    <div class="swiper-container " style="height:100vh;">
+    <div class="swiper-container" style="height:100vh;">
         <div class="swiper-wrapper">
 
             <div class="swiper-slide">
@@ -297,8 +309,8 @@
         </div>
         <!-- Add Pagination -->
         <div class="swiper-pagination"></div>
-        <div class="swiper-button-next" id="next" onclick="nextF()"></div>
-        <div class="swiper-button-prev" id="prev" onclick="prevF()"></div>
+        <div class="swiper-button-next" onclick="nextF()" id="next"></div>
+        <div class="swiper-button-prev" onclick="prevF()"  id="prev"></div>
     </div>
     <!-- Swiper JS -->
     <script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
@@ -311,11 +323,12 @@
             document.getElementById("mySidenav").style.width = "0";
         };
     </script>
+    <script src="https://api.dmcdn.net/all.js"></script>
     <script>
         let next = document.getElementById('next');
 
         var swiper = new Swiper('.swiper-container', {
-          
+
             pagination: {
                 el: '.swiper-pagination',
                 type: 'bullets',
@@ -327,9 +340,8 @@
             },
             lazy: true
         });
-    </script>
-    <script src="https://api.dmcdn.net/all.js"></script>
-    <script>
+
+
         var player = DM.player(document.getElementById("player"), {
             video: "x7ud7rt",
             width: "100%",
@@ -476,37 +488,28 @@
             }
         });
 
-        $('header').mouseenter(function () {
-            $('nav').animate({
-                top: '0'
-            });
-        })
-        $('.swiper-slide').mouseenter(function () {
-            // if mouse does not leave window
-            $('nav').animate({
-                top: '-125px'
-            });
-        });
 
         let players = [player, player2, player3, player4, player5, player6, player7, player8, player9, player10,
-            player11, player12, player13, player14, player15, player16, player17
+            player11, player12, player13, player14, player15, player16, player17, player18
         ];
+
+
         players.forEach(x => {
             x.addEventListener('video_end', (event) => {
-
                 setTimeout(() => {
                     x.play()
                 }, 2000);
             })
         });
 
-        let state;
 
         let swiperNav = document.querySelector('.swiper-pagination')
-        swiperNav.addEventListener('click', e=>{
-            players.forEach(x=>{x.pause()})
-            state = swiper.realIndex
-            myScript2()
+        swiperNav.addEventListener('click', e => {
+            players.forEach(x => {
+                x.pause()
+            })
+            players[swiper.realIndex].seek(0);
+            players[swiper.realIndex].play();
         })
 
         player.addEventListener('play', e => {
@@ -514,122 +517,30 @@
             preload.style.display = 'none';
         });
 
-        
-        const nextF = () => {
-            myScript2();
-            state++;
-        };
-        const prevF = () => {
-            myScript2();
-            state--;
-        };
         const resetVideos = () => {
             players.forEach(x => {
                 x.pause();
             });
-            player18.pause();
+
+            myScript2();
+        };
+
+        const nextF = () => {
+            resetVideos();
+
+        };
+        const prevF = () => {
+            resetVideos();
+
         };
         const myScript2 = () => {
-          
-            setTimeout(() => {
-                if(state === 0 ){
-                    player.seek(0);
-                    player.play()
-                }
-                if(state === 1 ){
-                    player2.seek(0);
-                    player2.play()
-                }
-                if(state === 2 ){
-                    player3.seek(0);
-                    player3.play()
-                }
-                if(state === 3 ){
-                    player4.seek(0);
-                    player4.play()
-                }
-                if(state === 4 ){
-                    player5.seek(0);
-                    player5.play()
-                }
-                if(state === 5 ){
-                    player6.seek(0);
-                    player6.play()
-                }
-                if(state === 6 ){
-                    player7.seek(0);
-                    player7.play()
-                }
-                if(state === 7 ){
-                    player8.seek(0);
-                    player8.play()
-                }
-                if(state === 8 ){
-                    player9.seek(0);
-                    player9.play()
-                }
-                if(state === 9 ){
-                    player10.seek(0);
-                    player10.play()
-                }
-                if(state === 10 ){
-                    player11.seek(0);
-                    player11.play()
-                }
-                if(state === 11 ){
-                    player12.seek(0);
-                    player12.play()
-                }
-                if(state === 12 ){
-                    player13.seek(0);
-                    player13.play()
-                }
-                if(state === 13 ){
-                    player14.seek(0);
-                    player14.play()
-                }
-                if(state === 14 ){
-                    player15.seek(0);
-                    player15.play()
-                }
-                if(state === 15 ){
-                    player16.seek(0);
-                    player16.play()
-                }
-                if(state === 16 ){
-                    player17.seek(0);
-                    player17.play()
-                }
-                if(state === 17 ){
-                    player18.seek(0);
-                    player18.play()
-                }
-                state === 1 ? player2.play() : 'null';
-                state === 2 ? player3.play() : 'null';
-                state === 3 ? player4.play() : 'null';
-                state === 4 ? player5.play() : 'null';
-                state === 5 ? player6.play() : 'null';
-                state === 6 ? player7.play() : 'null';
-                state === 7 ? player8.play() : 'null';
-                state === 8 ? player9.play() : 'null';
-                state === 9 ? player10.play() : 'null';
-                state === 10 ? player11.play() : 'null';
-                state === 11 ? player12.play() : 'null';
-                state === 12 ? player13.play() : 'null';
-                state === 13 ? player14.play() : 'null';
-                state === 14 ? player15.play() : 'null';
-                state === 15 ? player16.play() : 'null';
-                state === 16 ? player17.play() : 'null';
-                state === 17 ? player18.play() : 'null';
-                // if (state === 17) {
-                //     player18.play();
-                //     setTimeout(() => {
-                //         const btn = document.getElementById('btn-share')
-                //         btn.style.display = 'block'
-                //     }, 33000);
-                // }
 
+            players[swiper.realIndex].seek(0);
+            setTimeout(() => {
+                
+            players[swiper.realIndex].play();
             }, 200);
+
         };
     </script>
     <script>
@@ -638,7 +549,7 @@
 
         shareFixed.addEventListener('click', e => {
             btnShare.click()
-        })
+        });
 
         $("#btn-share").click(function () {
             var shareHtml = "",
@@ -718,7 +629,7 @@
                 mobileImg.style.display = "block";
                 hideMobileImg()
             }, 100);
-        }
+        };
     </script>
 </body>
 
