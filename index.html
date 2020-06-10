@@ -27,7 +27,7 @@
 
         .logo-nav {
             max-width: 60px;
-            z-index: 8;
+            z-index: 9;
             position: absolute;
             margin: 50px;
         }
@@ -191,6 +191,26 @@
             top: 5px !important;
             height: 25px !important;
         }
+        #firstOverlay{
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            background-color: rgba(33, 33, 33, 0.7);
+            z-index: 8 !important;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100vw;
+            text-align: center;
+            height: 100vh;
+            padding-top: 25%;
+            display: none;
+        }
+        #firstOverlay *{
+        font-family: 'Lato', sans-serif !important;
+        color: #fac553 ;
+        }
     </style>
     <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
@@ -202,8 +222,8 @@
 
 <body>
     </header>
-    <img id="mobile" src="./resources/Artboard 1.png" alt="">
-    <a href="https://www.whattookyousolong.org"><img class="logo-nav" src="./resources/Logo.png" alt=""></a>
+    <img id="mobile" src="./resources/rotate-D.png" alt="rotate">
+    <a href="https://www.whattookyousolong.org"><img class="logo-nav" src="./resources/Logo.png" alt="image"></a>
     <a href="#" class="btn btn-primary" id="btn-share" data-modal-title="Share the Jafra experience"
         data-facebook-label="Share on Facebook" data-twitter-label="Share on Twitter" data-twitter-text="Twitter Text"
         data-linkedin-label="Share on LinkedIn" data-linkedin-title="LinkedIn Title"
@@ -212,6 +232,8 @@
 
     <a id="share-fixed"><img id="logo-share" src="./resources/sharebtn.png" alt=""></a>
     <!-- Swiper -->
+    <div id="firstOverlay"><h1>Welcome to the Jafra experience</h1> 
+        <h4>Navigate through the story clicking on the arrows  </h4></div>
     <div class="swiper-container" style="height:100vh;">
         <div class="swiper-wrapper">
 
@@ -220,7 +242,7 @@
                 <iframe id="player" frameborder="0" width="100%" height="100%"
                     src="https://www.dailymotion.com/embed/video/x7ud7rt"></iframe>
                 <div class="swiper-lazy-preloader" id="preloader"> </div>
-
+                
             </div>
 
             <div class="swiper-slide"><iframe id="player2" frameborder="0" width="100%" height="100%"
@@ -503,8 +525,14 @@
             })
         });
 
-
+        let firstOverlay = document.getElementById('firstOverlay')
         let swiperNav = document.querySelector('.swiper-pagination')
+
+        firstOverlay.addEventListener('click', e=>{
+            next.click();
+            firstOverlay.style.display = 'none';
+        })
+
         swiperNav.addEventListener('click', e => {
             players.forEach(x => {
                 x.pause()
@@ -516,6 +544,7 @@
         player.addEventListener('play', e => {
             let preload = document.getElementById('preloader');
             preload.style.display = 'none';
+            firstOverlay.style.display = 'block'
         });
 
         const resetVideos = () => {
