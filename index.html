@@ -5,6 +5,9 @@
     <meta charset="utf-8">
     <title>JAFRA - What Took You So Long?</title>
     <link rel="icon" type="image/png" href="./resources/favicon.ico">
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
@@ -352,6 +355,14 @@
     </script>
     <script src="https://api.dmcdn.net/all.js"></script>
     <script>
+        // When ready...
+        window.addEventListener("load", function () {
+            // Set a timeout...
+            setTimeout(function () {
+                // Hide the address bar!
+                window.scrollTo(0, 1);
+            }, 0);
+        });
         let next = document.getElementById('next');
 
         var swiper = new Swiper('.swiper-container', {
