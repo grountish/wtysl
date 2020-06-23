@@ -216,6 +216,11 @@
             font-family: 'Lato', sans-serif !important;
             color: #fac553;
         }
+        #spaceForDv{
+            height: 20vh;
+            background-color: black;
+            display: none;
+        }
     </style>
     <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
@@ -226,7 +231,7 @@
 </head>
 
 <body id="body">
-    </header>
+    <div id="spaceForDv"></div>
     <img id="mobile" src="./resources/rotate-D.png" alt="rotate">
     <a href="https://www.whattookyousolong.org"><img class="logo-nav" src="./resources/Logo.png" alt="image"></a>
     <a href="#" class="btn btn-primary" id="btn-share" data-modal-title="Share the Jafra experience"
@@ -241,7 +246,8 @@
         <h1>Welcome to the Jafra experience</h1>
         <h4>Navigate through the story clicking on the arrows </h4>
     </div>
-    <div class="swiper-container" style="height:100vh;">
+   
+    <div class="swiper-container" id="swiperContainer" style="height:100vh;">
         <div class="swiper-wrapper">
 
             <div class="swiper-slide">
@@ -355,14 +361,14 @@
     </script>
     <script src="https://api.dmcdn.net/all.js"></script>
     <script>
-        // When ready...
-        window.addEventListener("load", function () {
-            // Set a timeout...
-            setTimeout(function () {
-                // Hide the address bar!
-                window.scrollTo(0, 1);
-            }, 0);
-        });
+
+        window.onorientationchange = function () {
+            if( screen.orientation.angle === 0 && navigator.appName == 'Netscape'){
+                document.getElementById('spaceForDv').style.display = 'block';
+                document.getElementById('swiperContainer').style.height = '80vh';
+            }
+           
+        };
         let next = document.getElementById('next');
 
         var swiper = new Swiper('.swiper-container', {
