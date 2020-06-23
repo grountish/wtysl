@@ -220,7 +220,7 @@
         #spaceForDv {
             height: 20vh;
             background-color: black;
-            display: none;
+            /* display: none; */
         }
     </style>
     <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
@@ -232,7 +232,6 @@
 </head>
 
 <body id="body">
-    <div id="spaceForDv"></div>
     <img id="mobile" src="./resources/rotate-D.png" alt="rotate">
     <a href="https://www.whattookyousolong.org"><img class="logo-nav" src="./resources/Logo.png" alt="image"></a>
     <a href="#" class="btn btn-primary" id="btn-share" data-modal-title="Share the Jafra experience"
@@ -247,7 +246,6 @@
         <h1>Welcome to the Jafra experience</h1>
         <h4>Navigate through the story clicking on the arrows </h4>
     </div>
-    <button onclick="openFullscreen()" style="z-index: 30;"> full screeen</button>
 
     <div class="swiper-container" id="swiperContainer" style="height:100vh;">
         <div class="swiper-wrapper">
@@ -349,6 +347,8 @@
         <div class="swiper-button-next" onclick="nextF()" id="next"></div>
         <div class="swiper-button-prev" onclick="prevF()" id="prev"></div>
     </div>
+    <div id="spaceForDv"></div>
+
     <!-- Swiper JS -->
     <script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
     <script>
@@ -362,31 +362,9 @@
     </script>
     <script src="https://api.dmcdn.net/all.js"></script>
     <script>
-        var elem = document.getElementById("body");
+       
 
-        function openFullscreen() {
-            if (elem.requestFullscreen) {
-                elem.requestFullscreen();
-            } else if (elem.mozRequestFullScreen) {
-                /* Firefox */
-                elem.mozRequestFullScreen();
-            } else if (elem.webkitRequestFullscreen) {
-                /* Chrome, Safari & Opera */
-                elem.webkitRequestFullscreen();
-            } else if (elem.msRequestFullscreen) {
-                /* IE/Edge */
-                elem.msRequestFullscreen();
-            }
-        }
-
-        window.onorientationchange =  ()=> {
-            // if( screen.orientation.angle === 0){
-            //     document.getElementById('spaceForDv').style.display = 'block';
-            //     document.getElementById('swiperContainer').style.height = '80vh';
-            // }
-            console.log('asd');
-                openFullscreen();
-        };
+      
         let next = document.getElementById('next');
 
         var swiper = new Swiper('.swiper-container', {
@@ -570,9 +548,7 @@
         firstOverlay.addEventListener('click', e => {
             next.click();
             firstOverlay.style.display = 'none';
-            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                openFullscreen();
-            };
+        
 
         })
 
