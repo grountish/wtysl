@@ -191,7 +191,8 @@
             top: 5px !important;
             height: 25px !important;
         }
-        #firstOverlay{
+
+        #firstOverlay {
             display: flex;
             flex-direction: column;
             align-content: center;
@@ -207,9 +208,10 @@
             padding-top: 25%;
             display: none;
         }
-        #firstOverlay *{
-        font-family: 'Lato', sans-serif !important;
-        color: #fac553 ;
+
+        #firstOverlay * {
+            font-family: 'Lato', sans-serif !important;
+            color: #fac553;
         }
     </style>
     <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
@@ -220,7 +222,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
 </head>
 
-<body>
+<body id="body">
     </header>
     <img id="mobile" src="./resources/rotate-D.png" alt="rotate">
     <a href="https://www.whattookyousolong.org"><img class="logo-nav" src="./resources/Logo.png" alt="image"></a>
@@ -232,8 +234,10 @@
 
     <a id="share-fixed"><img id="logo-share" src="./resources/sharebtn.png" alt=""></a>
     <!-- Swiper -->
-    <div id="firstOverlay"><h1>Welcome to the Jafra experience</h1> 
-        <h4>Navigate through the story clicking on the arrows  </h4></div>
+    <div id="firstOverlay">
+        <h1>Welcome to the Jafra experience</h1>
+        <h4>Navigate through the story clicking on the arrows </h4>
+    </div>
     <div class="swiper-container" style="height:100vh;">
         <div class="swiper-wrapper">
 
@@ -242,7 +246,7 @@
                 <iframe id="player" frameborder="0" width="100%" height="100%"
                     src="https://www.dailymotion.com/embed/video/x7ud7rt"></iframe>
                 <div class="swiper-lazy-preloader" id="preloader"> </div>
-                
+
             </div>
 
             <div class="swiper-slide"><iframe id="player2" frameborder="0" width="100%" height="100%"
@@ -333,7 +337,7 @@
         <!-- Add Pagination -->
         <div class="swiper-pagination"></div>
         <div class="swiper-button-next" onclick="nextF()" id="next"></div>
-        <div class="swiper-button-prev" onclick="prevF()"  id="prev"></div>
+        <div class="swiper-button-prev" onclick="prevF()" id="prev"></div>
     </div>
     <!-- Swiper JS -->
     <script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
@@ -511,6 +515,22 @@
             }
         });
 
+        var elem = document.getElementById("body");
+
+        function openFullscreen() {
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.mozRequestFullScreen) {
+                /* Firefox */
+                elem.mozRequestFullScreen();
+            } else if (elem.webkitRequestFullscreen) {
+                /* Chrome, Safari & Opera */
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) {
+                /* IE/Edge */
+                elem.msRequestFullscreen();
+            }
+        }
 
         let players = [player, player2, player3, player4, player5, player6, player7, player8, player9, player10,
             player11, player12, player13, player14, player15, player16, player17, player18
@@ -528,9 +548,13 @@
         let firstOverlay = document.getElementById('firstOverlay')
         let swiperNav = document.querySelector('.swiper-pagination')
 
-        firstOverlay.addEventListener('click', e=>{
+        firstOverlay.addEventListener('click', e => {
             next.click();
             firstOverlay.style.display = 'none';
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                openFullscreen();
+            };
+
         })
 
         swiperNav.addEventListener('click', e => {
@@ -567,8 +591,8 @@
 
             players[swiper.realIndex].seek(0);
             setTimeout(() => {
-                
-            players[swiper.realIndex].play();
+
+                players[swiper.realIndex].play();
             }, 200);
 
         };
@@ -657,7 +681,7 @@
         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
             setTimeout(() => {
                 mobileImg.style.display = "block";
-                hideMobileImg()
+                hideMobileImg();
             }, 100);
         };
     </script>
