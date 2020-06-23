@@ -26,6 +26,8 @@
         .swiper-button-next,
         .swiper-button-prev {
             color: white !important;
+            z-index: 500 !important;
+
         }
 
         .logo-nav {
@@ -159,6 +161,7 @@
         #next,
         #prev {
             margin: auto 3%;
+            z-index: 500 !important;
         }
 
         #share-fixed {
@@ -588,7 +591,7 @@
             setTimeout(() => {
 
                 players[swiper.realIndex].play();
-            }, 200);
+            }, 900);
 
         };
     </script>
