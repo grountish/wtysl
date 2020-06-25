@@ -212,7 +212,7 @@
             text-align: center;
             height: 100vh;
             padding-top: 25%;
-            display: none;
+            /* display: none; */
         }
 
         #firstOverlay * {
@@ -224,6 +224,12 @@
             height: 20vh;
             background-color: black;
             /* display: none; */
+        }
+
+        #play {
+            position: absolute;
+            bottom: 30px;
+            z-index: 5;
         }
     </style>
     <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
@@ -254,121 +260,95 @@
         <div class="swiper-wrapper">
 
             <div class="swiper-slide">
-                <iframe id="player" frameborder="0" width="100%" height="100%"
-                    src="https://www.dailymotion.com/embed/video/x7ud7rt"></iframe>
-                <div class="swiper-lazy-preloader" id="preloader"> </div>
+                <button onclick="playFirst()" id="play"> play</button>
+                <video src="./resources/Jafra Slide 1.mp4" width="100%" height="100%" id="firstVideo" loop></video>
+
+            </div>
+            <div class="swiper-slide">
+                <video src="./resources/Jafra Slide 2.mp4" width="100%" height="100%" preload="auto" loop></video>
+
+            </div>
+            <div class="swiper-slide">
+                <video src="./resources/Jafra Slide 3.mp4" width="100%" height="100%" preload="auto" loop></video>
+
+            </div>
+            <div class="swiper-slide">
+                <video src="./resources/Jafra Slide 4.mp4" width="100%" height="100%" preload="auto" loop></video>
+
+            </div>
+            <div class="swiper-slide">
+                <video src="./resources/Jafra Slide 5.mp4" width="100%" height="100%" preload="auto" loop></video>
+
+            </div>
+            <div class="swiper-slide">
+                <video src="./resources/Jafra Slide 6.mp4" width="100%" height="100%" preload="auto" loop></video>
+
+            </div>
+            <div class="swiper-slide">
+                <video src="./resources/Jafra Slide 7.mp4" width="100%" height="100%" preload="auto" loop></video>
+
+            </div>
+            <div class="swiper-slide">
+                <video src="./resources/Jafra Slide 8.mp4" width="100%" height="100%" preload="auto" loop></video>
+
+            </div>
+            <div class="swiper-slide">
+                <video src="./resources/Jafra Slide 9.mp4" width="100%" height="100%" preload="auto" loop></video>
+
+            </div>
+            <div class="swiper-slide">
+                <video src="./resources/Jafra Slide 10.mp4" width="100%" height="100%" preload="auto" loop></video>
+
+            </div>
+            <div class="swiper-slide">
+                <video src="./resources/Jafra Slide 11.mp4" width="100%" height="100%" preload="auto" loop></video>
+
+            </div>
+            <div class="swiper-slide">
+                <video src="./resources/Jafra Slide 12.mp4" width="100%" height="100%" preload="auto" loop></video>
+
+            </div>
+            <div class="swiper-slide">
+                <video src="./resources/Jafra Slide 13.mp4" width="100%" height="100%" preload="auto" loop></video>
+
+            </div>
+            <div class="swiper-slide">
+                <video src="./resources/Jafra Slide 14.mp4" width="100%" height="100%" preload="auto" loop></video>
+
+            </div>
+            <div class="swiper-slide">
+                <video src="./resources/Jafra Slide 15.mp4" width="100%" height="100%" preload="auto" loop></video>
+
+            </div>
+            <div class="swiper-slide">
+                <video src="./resources/Jafra Slide 16.mp4" width="100%" height="100%" preload="auto" loop></video>
+
+            </div>
+            <div class="swiper-slide">
+                <video src="./resources/Jafra Slide 17.mp4" width="100%" height="100%" preload="auto" loop></video>
+
+            </div>
+            <div class="swiper-slide">
+                <video src="./resources/Jafra Slide 18.mp4" width="100%" height="100%" preload="auto" loop></video>
 
             </div>
 
-            <div class="swiper-slide"><iframe id="player2" frameborder="0" width="100%" height="100%"
-                    src="https://www.dailymotion.com/embed/video/x7ubyle"></iframe>
 
-            </div>
-
-            <div class="swiper-slide"><iframe id="player3" frameborder="0" width="100%" height="100%"
-                    src="https://www.dailymotion.com/embed/video/x7ubyqo"></iframe>
-
-            </div>
-            <div class="swiper-slide"><iframe id="player4" frameborder="0" width="100%" height="100%"
-                    src="https://www.dailymotion.com/embed/video/x7ubys8"></iframe>
-
-            </div>
-
-            <div class="swiper-slide"><iframe id="player5" frameborder="0" width="100%" height="100%"
-                    src="https://www.dailymotion.com/embed/video/x7ubytz"></iframe>
-
-            </div>
-
-            <div class="swiper-slide"><iframe id="player6" frameborder="0" width="100%" height="100%"
-                    src="https://www.dailymotion.com/embed/video/x7ubz0g"></iframe>
-
-            </div>
-            <div class="swiper-slide"><iframe id="player7" frameborder="0" width="100%" height="100%"
-                    src="https://www.dailymotion.com/embed/video/x7ubz0s"></iframe>
-
-            </div>
-
-            <div class="swiper-slide"><iframe id="player8" frameborder="0" width="100%" height="100%"
-                    src="https://www.dailymotion.com/embed/video/x7ubz1z"></iframe>
-
-            </div>
-
-            <div class="swiper-slide"><iframe id="player9" frameborder="0" width="100%" height="100%"
-                    src="https://www.dailymotion.com/embed/video/x7ubz28"></iframe>
-
-            </div>
-            <div class="swiper-slide"><iframe id="player10" frameborder="0" width="100%" height="100%"
-                    src="https://www.dailymotion.com/embed/video/x7ubz2q"></iframe>
-
-            </div>
-
-            <div class="swiper-slide"><iframe id="player11" frameborder="0" width="100%" height="100%"
-                    src="https://www.dailymotion.com/embed/video/x7ubza3"></iframe>
-
-            </div>
-
-            <div class="swiper-slide"><iframe id="player12" frameborder="0" width="100%" height="100%"
-                    src="https://www.dailymotion.com/embed/video/x7uc4ml"></iframe>
-
-            </div>
-            <div class="swiper-slide"><iframe id="player13" frameborder="0" width="100%" height="100%"
-                    src="https://www.dailymotion.com/embed/video/x7uc4vz"></iframe>
-
-            </div>
-
-            <div class="swiper-slide"><iframe id="player14" frameborder="0" width="100%" height="100%"
-                    src="https://www.dailymotion.com/embed/video/x7uc4w1"></iframe>
-
-            </div>
-
-            <div class="swiper-slide"><iframe id="player15" frameborder="0" width="100%" height="100%"
-                    src="https://www.dailymotion.com/embed/video/x7uc540"></iframe>
-
-            </div>
-            <div class="swiper-slide"><iframe id="player16" frameborder="0" width="100%" height="100%"
-                    src="https://www.dailymotion.com/embed/video/x7uc541"></iframe>
-
-            </div>
-
-            <div class="swiper-slide"><iframe id="player17" frameborder="0" width="100%" height="100%"
-                    src="https://www.dailymotion.com/embed/video/x7uc597"></iframe>
-
-            </div>
-
-            <div class="swiper-slide"><iframe id="player18" frameborder="0" width="100%" height="100%"
-                    src="https://www.dailymotion.com/embed/video/x7uchs8"></iframe>
-                <a href="#" class="btn btn-primary" id="btn-share" data-modal-title="Share the Jafra experience"
-                    data-facebook-label="Share on Facebook" data-twitter-label="Share on Twitter"
-                    data-twitter-text="Twitter Text" data-linkedin-label="Share on LinkedIn"
-                    data-linkedin-title="LinkedIn Title" data-linkedin-summary="LinkedIn Summary"
-                    data-email-label="Share via Email" data-email-subject="Email Subject">Share</a>
-
-            </div>
         </div>
         <!-- Add Pagination -->
         <div class="swiper-pagination"></div>
         <div class="swiper-button-next" onclick="nextF()" id="next"></div>
-        <div class="swiper-button-prev" onclick="prevF()" id="prev"></div>
+        <div class="swiper-button-prev" onclick="nextF()" id="prev"></div>
     </div>
     <div id="spaceForDv"></div>
 
     <!-- Swiper JS -->
     <script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
-    <script>
-        function openNav() {
-            document.getElementById("mySidenav").style.width = "90%";
-        };
 
-        function closeNav() {
-            document.getElementById("mySidenav").style.width = "0";
-        };
-    </script>
     <script src="https://api.dmcdn.net/all.js"></script>
     <script>
-       
-
-      
         let next = document.getElementById('next');
+        let allVideos = document.getElementsByTagName('video')
 
         var swiper = new Swiper('.swiper-container', {
 
@@ -381,169 +361,21 @@
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
             },
-            lazy: true
+            lazy: true,
+
+            // Responsive breakpoints
+
+            onSlideChangeStart: function (swiper) {
+                if ($('.swiper-slide-next video')[0]) $('.swiper-slide-next video')[0].pause();
+                if ($('.swiper-slide-prev video')[0]) $('.swiper-slide-prev video')[0].pause();
+
+            },
+            onSlideChangeEnd: function (swiper) {
+                if ($('.swiper-slide-next video')[0]) $('.swiper-slide-next video')[0].pause();
+                if ($('.swiper-slide-prev video')[0]) $('.swiper-slide-prev video')[0].pause();
+            },
         });
 
-
-        var player = DM.player(document.getElementById("player"), {
-            video: "x7ud7rt",
-            width: "100%",
-            height: "100%",
-            params: {
-                controls: false,
-                autoplay: true
-            }
-        });
-        var player2 = DM.player(document.getElementById("player2"), {
-            video: "x7ubyle",
-            width: "100%",
-            height: "100%",
-            params: {
-                controls: false
-            }
-        });
-        var player3 = DM.player(document.getElementById("player3"), {
-            video: "x7ubyqo",
-            width: "100%",
-            height: "100%",
-            params: {
-                controls: false
-            }
-        });
-        var player4 = DM.player(document.getElementById("player4"), {
-            video: "x7ubys8",
-            width: "100%",
-            height: "100%",
-            params: {
-                controls: false
-            }
-        });
-        var player5 = DM.player(document.getElementById("player5"), {
-            video: "x7ubytz",
-            width: "100%",
-            height: "100%",
-            params: {
-                controls: false
-            }
-        });
-        var player6 = DM.player(document.getElementById("player6"), {
-            video: "x7ubz0g",
-            width: "100%",
-            height: "100%",
-            params: {
-                controls: false
-            }
-        });
-        var player7 = DM.player(document.getElementById("player7"), {
-            video: "x7ubz0s",
-            width: "100%",
-            height: "100%",
-            params: {
-                controls: false
-            }
-        });
-        var player8 = DM.player(document.getElementById("player8"), {
-            video: "x7ubz1z",
-            width: "100%",
-            height: "100%",
-            params: {
-                controls: false
-            }
-        });
-        var player9 = DM.player(document.getElementById("player9"), {
-            video: "x7ubz28",
-            width: "100%",
-            height: "100%",
-            params: {
-                controls: false
-            }
-        });
-        var player10 = DM.player(document.getElementById("player10"), {
-            video: "x7ubz2q",
-            width: "100%",
-            height: "100%",
-            params: {
-                controls: false
-            }
-        });
-        var player11 = DM.player(document.getElementById("player11"), {
-            video: "x7ubza3",
-            width: "100%",
-            height: "100%",
-            params: {
-                controls: false
-            }
-        });
-        var player12 = DM.player(document.getElementById("player12"), {
-            video: "x7uc4ml",
-            width: "100%",
-            height: "100%",
-            params: {
-                controls: false
-            }
-        });
-        var player13 = DM.player(document.getElementById("player13"), {
-            video: "x7uc4vz",
-            width: "100%",
-            height: "100%",
-            params: {
-                controls: false
-            }
-        });
-        var player14 = DM.player(document.getElementById("player14"), {
-            video: "x7uc4w1",
-            width: "100%",
-            height: "100%",
-            params: {
-                controls: false
-            }
-        });
-        var player15 = DM.player(document.getElementById("player15"), {
-            video: "x7uc540",
-            width: "100%",
-            height: "100%",
-            params: {
-                controls: false
-            }
-        });
-        var player16 = DM.player(document.getElementById("player16"), {
-            video: "x7uc541",
-            width: "100%",
-            height: "100%",
-            params: {
-                controls: false
-            }
-        });
-        var player17 = DM.player(document.getElementById("player17"), {
-            video: "x7uc597",
-            width: "100%",
-            height: "100%",
-            params: {
-                controls: false
-            }
-        });
-        var player18 = DM.player(document.getElementById("player18"), {
-            video: "x7uchs8",
-            width: "100%",
-            height: "100%",
-            params: {
-                controls: false
-            }
-        });
-
-
-        let players = [player, player2, player3, player4, player5, player6, player7, player8, player9, player10,
-            player11, player12, player13, player14, player15, player16, player17, player18
-        ];
-
-
-        players.forEach(x => {
-            x.addEventListener('video_end', (event) => {
-                setTimeout(() => {
-                    x.play()
-                }, 2000);
-            })
-        });
 
         let firstOverlay = document.getElementById('firstOverlay')
         let swiperNav = document.querySelector('.swiper-pagination')
@@ -551,49 +383,53 @@
         firstOverlay.addEventListener('click', e => {
             next.click();
             firstOverlay.style.display = 'none';
-        
-
-        })
-
-        swiperNav.addEventListener('click', e => {
-            players.forEach(x => {
-                x.pause()
-            })
-            players[swiper.realIndex].seek(0);
-            players[swiper.realIndex].play();
-        })
-
-        player.addEventListener('play', e => {
-            let preload = document.getElementById('preloader');
-            preload.style.display = 'none';
-            firstOverlay.style.display = 'block'
         });
 
-        const resetVideos = () => {
-            players.forEach(x => {
-                x.pause();
-            });
-
-            myScript2();
+        const playFirst = () => {
+            document.getElementById('firstVideo').play();
         };
+
+        const playCurrent = () => {
+            allVideos[swiper.realIndex].play()
+                .then((result) => {
+                    console.log(result)
+                }).catch((err) => {
+                    console.log(err)
+                });
+        }
+        // const playCurrent = () => {
+        //     allVideos[swiper.realIndex].oncanplay =()=>{
+
+        //         allVideos[swiper.realIndex].play();
+        //     }
+        // }
+
 
         const nextF = () => {
-            resetVideos();
-
-        };
-        const prevF = () => {
-            resetVideos();
-
-        };
-        const myScript2 = () => {
-
-            players[swiper.realIndex].seek(0);
+            [...allVideos].forEach(video => {
+                video.pause();
+                video.currentTime = 0;
+            });
             setTimeout(() => {
-
-                players[swiper.realIndex].play();
-            }, 900);
-
+                allVideos[swiper.realIndex].play()
+                    .then((result) => {
+                        console.log(result)
+                    }).catch((err) => {
+                        console.log(err)
+                    });
+            }, 1000);
         };
+
+        // [...allVideos].forEach(x => {
+        //     x.addEventListener('click', e => {
+        //         e.target.paused ? x.play() : x.pause();
+
+        //     });
+        // });
+
+        swiperNav.addEventListener('click', e => {
+            nextF();
+        });
     </script>
     <script>
         let btnShare = document.getElementById('btn-share');
